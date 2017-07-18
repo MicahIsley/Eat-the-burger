@@ -1,8 +1,13 @@
+.container {
+	background: gold;
+}
+
 li {
   padding: 5px;
   margin: 5px;
   background: #faebd7;
   width: 200px;
+  text-align: center;
 }
 
 .label {

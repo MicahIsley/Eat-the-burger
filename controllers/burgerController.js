@@ -1,39 +1,38 @@
-var express = require("express");
+var burgers = require("../models/burger.js");
+var path = require("path");
+module.exports = function(app) {
 
-var router = express.Router();
 
-var burger = require("../models/burger.js");
-
-router.get("/", function(req, res) {
-	burger.all(function(data) {
-		var hbsObject = {
-			burgers: data
-		};
-		console.log(hbsObject);
-		res.render("index", hbsObject);
+	app.get("/api/all", function(req, res) {
+		burgers.findAll({}).then(function(data) {
+			res.json(data);
+		});
 	});
-});
 
-router.post("/", function(req, res) {
-	burger.create([
-		"name", "eaten"
-	], [
-		req.body.name, req.body.sleepy
-	], function() {
+	app.get("/", function(req, res) {
+		res.sendFile(path.join(__dirname + "/../index.html"));
+	});
+
+	app.post("/api/new", function(req, res) {
+		burgers.create({
+			name: req.body.name,
+			eaten: false
+		});	
 		res.redirect("/");
 	});
-});
 
-router.put("/:id", function(req, res) {
-	var condition = "id = " + req.params.id;
+	app.post("/:id", function(req, res) {
+		var condition = "id = " + req.params.id;
 
-	console.log("condition", condition);
 
-	burger.update({
-		eaten: req.body.eaten
-	}, condition, function() {
+		burgers.update({
+			eaten: true},
+			{where: {
+				id: req.params.id
+			}
+		}, function() {
+			console.log("eaten");
+		});
 		res.redirect("/");
 	});
-});
-
-module.exports = router;
+}

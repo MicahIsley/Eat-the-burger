@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="/assets/css/style.css" type="text/css" />
+		<title>Eat Da Burger</title>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<h1>Eat Da Burger</h1>
+			</div>	
+			<div class="row">
+				<div class="col-sm-4 col-sm-offset-1">
+					<h2>Uneaten Burgers</h2>
+
+					<ul id="uneatenBurgers">
+					</ul>
+				</div>
+				<div class="col-sm-5 col-sm-offset-1">		
+
+					<h2>Already Eaten</h2>
+
+					<ul id="eatenBurgers">
+					</ul>
+				</div>
+			</div>			
+			<div class="row">
+				<h2>Add a Burger</h2>
+				<form class="create-update-form" action="/api/new" method="POST">
+
+				  <div class="form-group">
+				    <label for="ca">Burger:</label>
+				    <input type="text" id="ca" name="name">
+				  </div>
+
+				  <button type="submit" id="addBurger">Add Burger</button>
+				</form>
+			</div>
+		</div>		
+	</body>
+	<script type="text/javascript" src="assets/javascript/logic.js"></script>
+</html>
