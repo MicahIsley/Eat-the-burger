@@ -12,7 +12,7 @@ var JAWSDB_URL = {
 
 if (process.env.JAWSDB_URL) {
 	connection = mysql.createConnection(process.env.JAWSDB_URL);
-	sequelize = new Sequelize(JAWSDB_URL);
+	sequelize = new Sequelize(JAWSDB_URL, {dialect: "mysql"});
 } else {
 	connection = mysql.createConnection({
 		host: "localhost",
@@ -20,7 +20,7 @@ if (process.env.JAWSDB_URL) {
 		password: "Password123",
 		database: "burger_db"
 	});
-	sequelize = new Sequelize("burger_db", "root", "Password123");
+	sequelize = new Sequelize("burger_db", "root", "Password123", {dialect: "mysql"});
 };
 
 // var sequelize = new Sequelize("burger_db", "root", "Password123", {
